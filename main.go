@@ -3,9 +3,9 @@ package main
 import (
 	"bytes"
 	_ "image/png"
-	"os"
 	"log"
 	"math/rand"
+	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
@@ -48,17 +48,17 @@ func init() {
 }
 
 type Game struct {
-	charX      int
-	charY      int
-	gambinaX int
-	gambinaY int
-	keys []ebiten.Key
-	drinked int
+	charX        int
+	charY        int
+	gambinaX     int
+	gambinaY     int
+	keys         []ebiten.Key
+	drinked      int
 	audioContext *audio.Context
 	audioPlayer1 *audio.Player
 	audioPlayer2 *audio.Player
-	cut1audio *mp3.Stream
-	cut2audio *mp3.Stream
+	cut1audio    *mp3.Stream
+	cut2audio    *mp3.Stream
 }
 
 func (g *Game) Random() {
@@ -77,7 +77,7 @@ func (g *Game) Update() error {
 			log.Fatal(err)
 		}
 		g.cut2audio, err = mp3.DecodeWithSampleRate(48000, bytes.NewReader(cut2))
-			if err != nil {
+		if err != nil {
 			log.Fatal(err)
 		}
 
@@ -134,10 +134,10 @@ func (g *Game) Draw(screen *ebiten.Image) {
 				screen.DrawImage(img2, op)
 			}
 		}
-	
+
 		if g.charX > g.gambinaX {
-			if (g.charX - g.gambinaX <=66) && (g.charY - g.gambinaY >= -40) && (g.charY - g.gambinaY < 40) {
-				g.drinked = g.drinked +1
+			if (g.charX-g.gambinaX <= 66) && (g.charY-g.gambinaY >= -40) && (g.charY-g.gambinaY < 40) {
+				g.drinked = g.drinked + 1
 				g.Random()
 				gambinaOp.GeoM.Translate(float64(g.gambinaX), float64(g.gambinaY))
 				if err := g.audioPlayer1.Rewind(); err != nil {
@@ -146,8 +146,8 @@ func (g *Game) Draw(screen *ebiten.Image) {
 				g.audioPlayer1.Play()
 			}
 		} else {
-			if (g.gambinaX - g.charX <= 52) && (g.charY - g.gambinaY >= -40) && (g.charY - g.gambinaY < 40) {
-				g.drinked = g.drinked +1
+			if (g.gambinaX-g.charX <= 52) && (g.charY-g.gambinaY >= -40) && (g.charY-g.gambinaY < 40) {
+				g.drinked = g.drinked + 1
 				g.Random()
 				gambinaOp.GeoM.Translate(float64(g.gambinaX), float64(g.gambinaY))
 				if err := g.audioPlayer2.Rewind(); err != nil {
@@ -167,11 +167,11 @@ func main() {
 	ebiten.SetWindowSize(640, 480)
 	ebiten.SetWindowTitle("Gambina Hunter")
 	if err := ebiten.RunGame(&Game{
-		charX: 320,
-		charY: 320,
-		gambinaX: 200,
-		gambinaY: 200,
-		drinked: 0,
+		charX:        320,
+		charY:        320,
+		gambinaX:     200,
+		gambinaY:     200,
+		drinked:      0,
 		audioContext: audio.NewContext(48000),
 	}); err != nil {
 		log.Fatal(err)
