@@ -2,7 +2,7 @@
 
 ## About
 
-Out of curiosity, I tried to learn how to use [Ebitengine](https://ebitengine.org) and created this tiny game where my pixelated friend hunts for Gambina (Vermouth & Gin cocktail, his favorite). Comes with flavor of Duke Nukem sounds.
+Out of curiosity, I tried to learn how to use [Ebitengine](https://ebitengine.org) and created this tiny game as a present for my friend where my pixelated friend hunts for Gambina (Vermouth & Gin cocktail, his favorite). Comes with flavor of Duke Nukem sounds.
 
 Dead simple game with `dead simple 2D game engine for Go` -Ebitengine
 
